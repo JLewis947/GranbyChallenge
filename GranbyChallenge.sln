@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GranbyChallenge", "GranbyChallenge\GranbyChallenge.csproj", "{B66070F3-8F2A-49A0-B323-8A8350BA8187}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GranbyTests", "GranbyTests\GranbyTests.csproj", "{7DC9EAEE-1777-4864-AE50-0DD9BBE60C9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B66070F3-8F2A-49A0-B323-8A8350BA8187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B66070F3-8F2A-49A0-B323-8A8350BA8187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B66070F3-8F2A-49A0-B323-8A8350BA8187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC9EAEE-1777-4864-AE50-0DD9BBE60C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC9EAEE-1777-4864-AE50-0DD9BBE60C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC9EAEE-1777-4864-AE50-0DD9BBE60C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC9EAEE-1777-4864-AE50-0DD9BBE60C9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
