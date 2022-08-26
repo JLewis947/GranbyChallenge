@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GranbyChallenge
 {
-    internal abstract class JobTemplate
+    public abstract class JobTemplate
     {
         public abstract bool CheckStock();
     }

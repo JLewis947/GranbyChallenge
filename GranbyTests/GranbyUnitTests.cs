@@ -23,5 +23,11 @@ namespace GranbyTests
             Assert.Equal(bubblewrapStockAmount, stockAmounts[2]);
             Assert.Equal(cardboardboxStockAmount, stockAmounts[3]);
         }
+
+        [Fact]
+        public void CheckStockTest()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

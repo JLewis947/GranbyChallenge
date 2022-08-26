@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GranbyChallenge
 {
-    internal class BirthdayJob : JobTemplate
+    public class BirthdayJob : JobTemplate
     {
         public override bool CheckStock()
         {
