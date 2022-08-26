@@ -11,21 +11,21 @@ namespace GranbyChallenge
         public override string Name => "Birthday Job";
 
         public override int DispatchTime { get; set; }
+        public override Stock WarehouseStock { get; set; }
+
         public BirthdayJob(int dispatchTime)
         {
             DispatchTime = dispatchTime;
+            WarehouseStock = Stock.GetInstance();
         }
         public override bool CheckStock()
         {
-            // Get the instance of stock
-            Stock stock = Stock.GetInstance();
-
             // Check that stock is available and return true if available or false if not available
-            if (stock.ToyStockAmount > 0)
+            if (WarehouseStock.ToyStockAmount > 0)
             {
-                if(stock.BubblewrapStockAmount > 0)
+                if(WarehouseStock.BubblewrapStockAmount > 0)
                 {
-                    if(stock.CardboardboxStockAmount > 0)
+                    if(WarehouseStock.CardboardboxStockAmount > 0)
                     {
                         return true;
                     }
@@ -36,7 +36,17 @@ namespace GranbyChallenge
 
         public override bool ProcessOrder()
         {
-            throw new NotImplementedException();
+            try
+            {
+                WarehouseStock.BubblewrapStockAmount--;
+                WarehouseStock.CardboardboxStockAmount--;
+                WarehouseStock.ToyStockAmount--;
+            } catch
+            {
+                Console.WriteLine("Stock change has failed");
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -10,22 +10,22 @@ namespace GranbyChallenge
     {
         public override string Name => "Christmas Job";
         public override int DispatchTime { get; set; }
+        public override Stock WarehouseStock { get; set; }
+
         public ChristmasJob(int dispatchTime)
         {
             DispatchTime = dispatchTime;
+            WarehouseStock = Stock.GetInstance();
         }
 
         public override bool CheckStock()
         {
-            // Get the instance of stock
-            Stock stock = Stock.GetInstance();
-
             // Check that stock is available and return true if available or false if not available
-            if (stock.XboxStockAmount > 0)
+            if (WarehouseStock.XboxStockAmount > 0)
             {
-                if (stock.BubblewrapStockAmount > 0)
+                if (WarehouseStock.BubblewrapStockAmount > 0)
                 {
-                    if (stock.CardboardboxStockAmount > 0)
+                    if (WarehouseStock.CardboardboxStockAmount > 0)
                     {
                         return true;
                     }

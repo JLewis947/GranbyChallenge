@@ -49,21 +49,25 @@ namespace GranbyChallenge
         public int ToyStockAmount
         {
             get { return toyStockAmount; }
+            set { toyStockAmount = value; }
         }
 
         public int XboxStockAmount
         {
             get { return xboxStockAmount; }
+            set { xboxStockAmount = value; }
         }
 
         public int BubblewrapStockAmount
         {
             get { return bubblewrapStockAmount; }
+            set { bubblewrapStockAmount = value; }
         }
 
         public int CardboardboxStockAmount
         {
             get { return cardboardboxStockAmount; }
+            set { cardboardboxStockAmount = value; }
         }
     }
 }
