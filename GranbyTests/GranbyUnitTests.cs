@@ -5,11 +5,8 @@ namespace GranbyTests
         [Fact]
         public void TestStockClass()
         {
-            // Create dummy stock amounts
-            int[] stockAmounts = { 43, 26, 48, 92 };
-
-            // Create new stock class with dummy stock amounts assigned to stock
-            Stock stock = new Stock(stockAmounts[0], stockAmounts[1], stockAmounts[2], stockAmounts[3]);
+            // Get the instance of the stock class
+            Stock stock = Stock.GetInstance();
 
             // Get the stock amounts from the stock class
             int toyStockAmount = stock.ToyStockAmount;
@@ -17,15 +14,21 @@ namespace GranbyTests
             int bubblewrapStockAmount = stock.BubblewrapStockAmount;
             int cardboardboxStockAmount = stock.CardboardboxStockAmount;
 
-            // Check the stock amounts are equal to the dummy stock amounts
-            Assert.Equal(toyStockAmount, stockAmounts[0]);
-            Assert.Equal(xboxStockAmount, stockAmounts[1]);
-            Assert.Equal(bubblewrapStockAmount, stockAmounts[2]);
-            Assert.Equal(cardboardboxStockAmount, stockAmounts[3]);
+            // Check the stock amounts are assigned to
+            Assert.True(toyStockAmount > 0);
+            Assert.True(xboxStockAmount > 0);
+            Assert.True(bubblewrapStockAmount > 0);
+            Assert.True(cardboardboxStockAmount > 0);
         }
 
         [Fact]
-        public void CheckStockTest()
+        public void CheckBirthdayStockTest()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Fact]
+        public void CheckChristmasStockTest()
         {
             throw new NotImplementedException();
         }
