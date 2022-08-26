@@ -9,6 +9,7 @@ namespace GranbyChallenge
     public abstract class JobTemplate
     {
         public abstract string Name { get; }
+        public abstract int DispatchTime { get; set; }
         public abstract bool CheckStock();
         public abstract bool ProcessOrder();
     }

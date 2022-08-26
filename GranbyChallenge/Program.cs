@@ -2,8 +2,8 @@
 
 // Create a list of jobs to complete
 List<JobTemplate> jobs = new List<JobTemplate>();
-jobs.Add(new ChristmasJob());
-jobs.Add(new BirthdayJob());
+jobs.Add(new ChristmasJob(24));
+jobs.Add(new BirthdayJob(48));
 
 //// Get the implementation type to use
 //int implementationType = 0;

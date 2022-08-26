@@ -10,6 +10,11 @@ namespace GranbyChallenge
     {
         public override string Name => "Birthday Job";
 
+        public override int DispatchTime { get; set; }
+        public BirthdayJob(int dispatchTime)
+        {
+            DispatchTime = dispatchTime;
+        }
         public override bool CheckStock()
         {
             // Get the instance of stock

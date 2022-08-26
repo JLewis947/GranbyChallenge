@@ -9,6 +9,12 @@ namespace GranbyChallenge
     public class ChristmasJob : JobTemplate
     {
         public override string Name => "Christmas Job";
+        public override int DispatchTime { get; set; }
+        public ChristmasJob(int dispatchTime)
+        {
+            DispatchTime = dispatchTime;
+        }
+
         public override bool CheckStock()
         {
             // Get the instance of stock

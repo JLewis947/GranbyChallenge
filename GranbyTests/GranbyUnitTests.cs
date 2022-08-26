@@ -25,7 +25,7 @@ namespace GranbyTests
         public void CheckBirthdayStockTest()
         {
             // Create new birthday job
-            BirthdayJob job = new BirthdayJob();
+            BirthdayJob job = new BirthdayJob(24);
             // Check that stock is available for job
             Assert.True(job.CheckStock());
         }
@@ -34,9 +34,21 @@ namespace GranbyTests
         public void CheckChristmasStockTest()
         {
             // Create new christmas job
-            ChristmasJob job = new ChristmasJob();
+            ChristmasJob job = new ChristmasJob(24);
             // Check that stock is available for job
             Assert.True(job.CheckStock());
+        }
+
+        [Fact]
+        public void ProcessBirthdayJob()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Fact]
+        public void ProcessChristmasJob()
+        {
+            throw new NotImplementedException();
         }
     }
 }
