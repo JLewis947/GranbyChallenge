@@ -5,15 +5,29 @@ List<JobTemplate> jobs = new List<JobTemplate>();
 jobs.Add(new ChristmasJob());
 jobs.Add(new BirthdayJob());
 
-// Get the implementation type to use
-int implementationType = 0;
+//// Get the implementation type to use
+//int implementationType = 0;
 
-// Ask user for input until the input is 1, 2 or 3
-do
+//// Ask user for input until the input is 1, 2 or 3
+//do
+//{
+//    Console.Clear();
+//    implementationType = GetImplementationType();
+//} while (implementationType != 1 && implementationType != 2 && implementationType != 3);
+
+foreach(var job in jobs)
 {
-    Console.Clear();
-    implementationType = GetImplementationType();
-} while (implementationType != 1 && implementationType != 2 && implementationType != 3);
+    bool isStockAvailable = job.CheckStock();
+    if(isStockAvailable)
+    {
+
+    } else
+    {
+        Console.WriteLine("Stock is not available for current job");
+    }
+}
+
+Console.ReadKey();
 
 /// <summary>
 /// Gets the implementation type from the user

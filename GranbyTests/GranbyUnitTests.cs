@@ -24,13 +24,19 @@ namespace GranbyTests
         [Fact]
         public void CheckBirthdayStockTest()
         {
-            throw new NotImplementedException();
+            // Create new birthday job
+            BirthdayJob job = new BirthdayJob();
+            // Check that stock is available for job
+            Assert.True(job.CheckStock());
         }
 
         [Fact]
         public void CheckChristmasStockTest()
         {
-            throw new NotImplementedException();
+            // Create new christmas job
+            ChristmasJob job = new ChristmasJob();
+            // Check that stock is available for job
+            Assert.True(job.CheckStock());
         }
     }
 }
