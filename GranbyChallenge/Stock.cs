@@ -33,10 +33,10 @@ namespace GranbyChallenge
             Random random = new();
             int[] stockAmounts =
             {
-                random.Next(20, 40),
-                random.Next(20, 60),
-                random.Next(10, 57),
-                random.Next(12, 28)
+                random.Next(30, 40),
+                random.Next(40, 60),
+                random.Next(29, 57),
+                random.Next(40, 100)
             };
             if(instance == null)
             {

@@ -36,7 +36,18 @@ namespace GranbyChallenge
 
         public override bool ProcessOrder()
         {
-            throw new NotImplementedException();
+            try
+            {
+                WarehouseStock.BubblewrapStockAmount--;
+                WarehouseStock.CardboardboxStockAmount--;
+                WarehouseStock.XboxStockAmount--;
+            }
+            catch
+            {
+                Console.WriteLine("Stock change has failed");
+                return false;
+            }
+            return true;
         }
     }
 }

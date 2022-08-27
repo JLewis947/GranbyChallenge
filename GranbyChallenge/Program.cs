@@ -2,29 +2,42 @@
 
 // Create a list of jobs to complete
 List<JobTemplate> jobs = new List<JobTemplate>();
-jobs.Add(new ChristmasJob(24));
-jobs.Add(new BirthdayJob(48));
 
-//// Get the implementation type to use
-//int implementationType = 0;
-
-//// Ask user for input until the input is 1, 2 or 3
-//do
-//{
-//    Console.Clear();
-//    implementationType = GetImplementationType();
-//} while (implementationType != 1 && implementationType != 2 && implementationType != 3);
-
-foreach(var job in jobs)
+Random random = new Random();
+for(int i = 0; i < 75; i++)
 {
-    bool isStockAvailable = job.CheckStock();
-    if(isStockAvailable)
+    int ranNumber = random.Next(0, 2);
+    if(ranNumber == 0)
     {
-
+        jobs.Add(new BirthdayJob(24));
     } else
     {
-        Console.WriteLine("Stock is not available for current job");
+        jobs.Add(new ChristmasJob(24));
     }
+}
+
+// Get the implementation type to use
+int implementationType;
+
+// Ask user for input until the input is 1, 2 or 3
+do
+{
+    Console.Clear();
+    implementationType = GetImplementationType();
+} while (implementationType != 1 && implementationType != 2 && implementationType != 3);
+
+switch(implementationType)
+{
+    case 1:
+        FirstInFirstOut(jobs);
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    default:
+        Console.WriteLine("Implementation type not available");
+        break;
 }
 
 Console.ReadKey();
@@ -51,4 +64,24 @@ static int GetImplementationType()
         Console.WriteLine("Could Not Parse Input");
     }
     return convertedInput;
+}
+
+/// <summary>
+/// Process jobs using the first in first out implementation
+/// </summary>
+static void FirstInFirstOut(List<JobTemplate> jobs)
+{
+    foreach (var job in jobs)
+    {
+        bool isStockAvailable = job.CheckStock();
+        if (isStockAvailable)
+        {
+            job.ProcessOrder();
+            Console.WriteLine($"{job.Name} Order Processed");
+        }
+        else
+        {
+            Console.WriteLine($"Stock is not available for {job.Name}");
+        }
+    }
 }

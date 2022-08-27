@@ -42,13 +42,19 @@ namespace GranbyTests
         [Fact]
         public void ProcessBirthdayJob()
         {
-            throw new NotImplementedException();
+            // Create new birthday job
+            BirthdayJob job = new BirthdayJob(48);
+            // Check that order is processed
+            Assert.True(job.ProcessOrder());
         }
 
         [Fact]
         public void ProcessChristmasJob()
         {
-            throw new NotImplementedException();
+            // Create new christmas job
+            ChristmasJob job = new ChristmasJob(48);
+            // Check that order is processed
+            Assert.True(job.ProcessOrder());
         }
     }
 }
