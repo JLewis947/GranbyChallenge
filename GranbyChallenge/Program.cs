@@ -1,4 +1,5 @@
 ﻿using GranbyChallenge;
+using System.Diagnostics;
 
 // Create a list of jobs to complete
 List<JobTemplate> jobs = new List<JobTemplate>();
@@ -7,12 +8,18 @@ Random random = new Random();
 for(int i = 0; i < 75; i++)
 {
     int ranNumber = random.Next(0, 2);
+    int ranDispatchNum = random.Next(0, 2);
+    int dispatchTime = 24;
+    if(ranDispatchNum == 1)
+    {
+        dispatchTime = 48;
+    }
     if(ranNumber == 0)
     {
-        jobs.Add(new BirthdayJob(24));
+        jobs.Add(new BirthdayJob(dispatchTime));
     } else
     {
-        jobs.Add(new ChristmasJob(24));
+        jobs.Add(new ChristmasJob(dispatchTime));
     }
 }
 
@@ -26,18 +33,31 @@ do
     implementationType = GetImplementationType();
 } while (implementationType != 1 && implementationType != 2 && implementationType != 3);
 
+ImplementationsTypes implementationTypes = new ImplementationsTypes();
+bool areOrdersProcessed = false;
+
 switch(implementationType)
 {
     case 1:
-        FirstInFirstOut(jobs);
+        areOrdersProcessed = implementationTypes.FirstInFirstOut(jobs);
         break;
     case 2:
+        areOrdersProcessed = implementationTypes.InFull(jobs);
         break;
     case 3:
+        areOrdersProcessed = implementationTypes.OnTime(jobs);
         break;
     default:
         Console.WriteLine("Implementation type not available");
         break;
+}
+
+if(areOrdersProcessed)
+{
+    Console.WriteLine("All orders processed");
+} else
+{
+    Console.WriteLine("Error processing orders");
 }
 
 Console.ReadKey();
@@ -64,24 +84,4 @@ static int GetImplementationType()
         Console.WriteLine("Could Not Parse Input");
     }
     return convertedInput;
-}
-
-/// <summary>
-/// Process jobs using the first in first out implementation
-/// </summary>
-static void FirstInFirstOut(List<JobTemplate> jobs)
-{
-    foreach (var job in jobs)
-    {
-        bool isStockAvailable = job.CheckStock();
-        if (isStockAvailable)
-        {
-            job.ProcessOrder();
-            Console.WriteLine($"{job.Name} Order Processed");
-        }
-        else
-        {
-            Console.WriteLine($"Stock is not available for {job.Name}");
-        }
-    }
 }

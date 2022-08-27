@@ -2,6 +2,14 @@ namespace GranbyTests
 {
     public class GranbyUnitTests
     {
+        List<JobTemplate> jobs = new List<JobTemplate>()
+        {
+            new BirthdayJob(24), 
+            new ChristmasJob(24)
+        };
+
+        ImplementationsTypes types = new ImplementationsTypes();
+
         [Fact]
         public void TestStockClass()
         {
@@ -40,7 +48,7 @@ namespace GranbyTests
         }
 
         [Fact]
-        public void ProcessBirthdayJob()
+        public void ProcessBirthdayJobTest()
         {
             // Create new birthday job
             BirthdayJob job = new BirthdayJob(48);
@@ -49,12 +57,41 @@ namespace GranbyTests
         }
 
         [Fact]
-        public void ProcessChristmasJob()
+        public void ProcessChristmasJobTest()
         {
             // Create new christmas job
             ChristmasJob job = new ChristmasJob(48);
             // Check that order is processed
             Assert.True(job.ProcessOrder());
+        }
+
+        [Fact]
+        public void GetStockAmountsTest()
+        {
+            Stock stock = Stock.GetInstance();
+            int[] stockAmounts = stock.GetStockAmounts();
+            Assert.True(stockAmounts[0] > 0);
+            Assert.True(stockAmounts[1] > 0);
+            Assert.True(stockAmounts[2] > 0);
+            Assert.True(stockAmounts[3] > 0);
+        }
+
+        [Fact]
+        public void TestFirstIn()
+        {
+            Assert.True(ImplementationsTypes.FirstInFirstOut(jobs));
+        }
+
+        [Fact]
+        public void TestInFull()
+        {
+            Assert.True(types.InFull(jobs));
+        }
+
+        [Fact]
+        public void TestOnTime()
+        {
+            Assert.True(types.OnTime(jobs));
         }
     }
 }

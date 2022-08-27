@@ -46,6 +46,11 @@ namespace GranbyChallenge
             return instance;
         }
 
+        public int[] GetStockAmounts()
+        {
+            return new int[] { toyStockAmount, xboxStockAmount, bubblewrapStockAmount, cardboardboxStockAmount };
+        }
+
         public int ToyStockAmount
         {
             get { return toyStockAmount; }
