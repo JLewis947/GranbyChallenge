@@ -1,4 +1,5 @@
 ﻿using GranbyChallenge;
+using GranbyChallenge.Jobs;
 
 // Create a list of jobs to complete
 List<JobTemplate> jobs = new List<JobTemplate>();
@@ -41,6 +42,7 @@ do
 ImplementationsTypes implementationTypes = new ImplementationsTypes();
 bool areOrdersProcessed = false;
 
+// Complete the implementation type based on user input
 switch(implementationType)
 {
     case 1:

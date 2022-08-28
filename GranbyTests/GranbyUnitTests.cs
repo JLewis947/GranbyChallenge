@@ -1,3 +1,5 @@
+using GranbyChallenge.Jobs;
+
 namespace GranbyTests
 {
     public class GranbyUnitTests

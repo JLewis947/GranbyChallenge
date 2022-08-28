@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GranbyChallenge
+namespace GranbyChallenge.Jobs
 {
     public class Stock
     {
@@ -47,7 +47,7 @@ namespace GranbyChallenge
                 random.Next(75, 100)
             };
             // Create a new stock class if the instance does not exist
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new Stock(stockAmounts[0], stockAmounts[1], stockAmounts[2], stockAmounts[3]);
             }
@@ -55,6 +55,10 @@ namespace GranbyChallenge
             return instance;
         }
 
+        /// <summary>
+        /// Returns the amount of stock for each stock item
+        /// </summary>
+        /// <returns></returns>
         public int[] GetStockAmounts()
         {
             return new int[] { toyStockAmount, xboxStockAmount, bubblewrapStockAmount, cardboardboxStockAmount };

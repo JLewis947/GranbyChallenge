@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GranbyChallenge.Jobs;
 
 namespace GranbyChallenge
 {
@@ -11,7 +12,7 @@ namespace GranbyChallenge
         static readonly Stock stock = Stock.GetInstance();
 
         /// <summary>
-        /// Process jobs using the first in first out implementation
+        /// Complete jobs on a first come first serve basis
         /// </summary>
         public bool FirstInFirstOut(List<JobTemplate> jobs)
         {
@@ -46,52 +47,67 @@ namespace GranbyChallenge
         }
 
         /// <summary>
-        /// 
+        /// Complete the maximum number of jobs possible
         /// </summary>
         /// <param name="jobs">The list of jobs to complete</param>
-        /// <returns></returns>
         public bool InFull(List<JobTemplate> jobs)
         {
+            // Create list to hold completable jobs and the remaining jobs
             List<JobTemplate> completableJobs = new List<JobTemplate>();
             List<JobTemplate> remainingJobs = new List<JobTemplate>();
 
+            // Display the required stock for all of the jobs
             GetRequiredStock(jobs);
 
+            // Create variables to display number of runs and to stop processing jobs
             bool stopLoop = false;
             int runNumber = 1;
 
             do
             {
+                // Get the amount of stock for each stock item
                 int toys = stock.ToyStockAmount;
                 int xbox = stock.XboxStockAmount;
                 int bubblewrap = stock.BubblewrapStockAmount;
                 int boxes = stock.CardboardboxStockAmount;
 
+                // Loop over jobs to complete
                 foreach(var job in jobs)
                 {
+                    // Take away stock from bubblewrap and boxes
                     bubblewrap--;
                     boxes--;
+
+                    // Check which job it is to process
                     if(job is BirthdayJob)
                     {
+                        // Take away stock from toys
                         toys--;
-                        if(toys > 0 && bubblewrap > 0 && boxes > 0)
+                        
+                        // If the stock for toys, bubblewrap and boxes is above or equal to 0 then add the job to completable jobs
+                        if(toys >= 0 && bubblewrap >= 0 && boxes >= 0)
                         {
                             completableJobs.Add(job);
                         } else
                         {
+                            // Add the stock back to the remaining stock and add the job to remaining jobs
                             toys++;
                             bubblewrap++;
                             boxes++;
                             remainingJobs.Add(job);
                         }
-                    } else
+                    } else if(job is ChristmasJob)
                     {
+                        // Take away stock from xbox
                         xbox--;
+
+                        // If the stock for toys, bubblewrap and boxes is above or equal to 0 then add the job to completable jobs
                         if (xbox >= 0 && bubblewrap >= 0 && boxes >= 0)
                         {
                             completableJobs.Add(job);
                         } else
                         {
+                            // Add the stock back to the remaining stock and add the job to remaining jobs
                             xbox++;
                             bubblewrap++;
                             boxes++;
@@ -100,11 +116,13 @@ namespace GranbyChallenge
                     }
                 }
 
+                // Remove the completed jobs from the job list
                 foreach (var job in completableJobs)
                 {
                     jobs.Remove(job);
                 }
 
+                // Process the jobs if there are any to complete otherwise stop looking for jobs to complete
                 if (completableJobs.Count != 0)
                 {
                     foreach(var job in completableJobs)
@@ -122,10 +140,18 @@ namespace GranbyChallenge
             return true;
         }
 
+        /// <summary>
+        /// Sort jobs by dispatch time and try to complete maximum number of jobs possible
+        /// </summary>
+        /// <param name="jobs">The list of jobs to complete</param>
+        /// <returns></returns>
         public bool OnTime(List<JobTemplate> jobs)
         {
+            // Create a list of 24 hour jobs and a list of 48 hour jobs
             List<JobTemplate> singleDayJobs = new List<JobTemplate>();
             List<JobTemplate> multiDayJobs = new List<JobTemplate>();
+
+            // Sort jobs into their respective lists
             for(int i = 0; i < jobs.Count; i++)
             {
                 if (jobs[i].DispatchTime == 24)
@@ -136,20 +162,29 @@ namespace GranbyChallenge
                     multiDayJobs.Add(jobs[i]);
                 }
             }
+
+            // Process the maximum number of jobs for each list. 24 hour jobs are prioritised.
             InFull(singleDayJobs);
             InFull(multiDayJobs);
             return true;
         }
 
+        /// <summary>
+        /// Get the required stock for a list of jobs
+        /// </summary>
+        /// <param name="jobs">The list of jobs to check the required stock for</param>
         private static void GetRequiredStock(List<JobTemplate> jobs)
         {
+            // Get the stock amounts
             int[] stockAmounts = stock.GetStockAmounts();
 
+            // Create variables to hold stock amount needed for each stock item
             int toyStockNeeded = 0;
             int xboxStockNeeded = 0;
             int bubblewrapStockNeeded = 0;
             int cardboardboxStockNeeded = 0;
 
+            // Calculate amount of total stock needed
             for (int i = 0; i < jobs.Count; i++)
             {
                 cardboardboxStockNeeded++;
@@ -164,6 +199,7 @@ namespace GranbyChallenge
                 }
             }
 
+            // Display stock required
             Console.WriteLine("Stock Required / Stock Available");
             Console.WriteLine($"Toys: {toyStockNeeded} / {stockAmounts[0]}");
             Console.WriteLine($"Xbox: {xboxStockNeeded} / {stockAmounts[1]}");

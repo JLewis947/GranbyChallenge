@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GranbyChallenge
+namespace GranbyChallenge.Jobs
 {
     public abstract class JobTemplate
     {
