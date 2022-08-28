@@ -4,8 +4,10 @@ namespace GranbyTests
     {
         List<JobTemplate> jobs = new List<JobTemplate>()
         {
-            new BirthdayJob(24), 
-            new ChristmasJob(24)
+            new BirthdayJob(24),
+            new ChristmasJob(24),
+            new BirthdayJob(48),
+            new ChristmasJob(48)
         };
 
         ImplementationsTypes types = new ImplementationsTypes();
@@ -79,7 +81,7 @@ namespace GranbyTests
         [Fact]
         public void TestFirstIn()
         {
-            Assert.True(ImplementationsTypes.FirstInFirstOut(jobs));
+            Assert.True(types.FirstInFirstOut(jobs));
         }
 
         [Fact]

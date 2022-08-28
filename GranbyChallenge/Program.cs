@@ -1,19 +1,24 @@
 ﻿using GranbyChallenge;
-using System.Diagnostics;
 
 // Create a list of jobs to complete
 List<JobTemplate> jobs = new List<JobTemplate>();
 
 Random random = new Random();
+// Create 75 random jobs to be used for testing
 for(int i = 0; i < 75; i++)
 {
+    // Create random job and dispatch time
     int ranNumber = random.Next(0, 2);
     int ranDispatchNum = random.Next(0, 2);
+
+    // Set the dispatch time for the job
     int dispatchTime = 24;
     if(ranDispatchNum == 1)
     {
         dispatchTime = 48;
     }
+
+    // Create a job based on the random number value generated
     if(ranNumber == 0)
     {
         jobs.Add(new BirthdayJob(dispatchTime));

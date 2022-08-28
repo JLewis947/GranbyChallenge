@@ -17,7 +17,13 @@ namespace GranbyChallenge
         private int bubblewrapStockAmount;
         private int cardboardboxStockAmount;
 
-        // Create a new instance of the stock class and assign the amount of stock for each item
+        /// <summary>
+        /// Create a new instance of the stock class and assign the amount of stock for each item
+        /// </summary>
+        /// <param name="toyStockAmount">Amount of toy stock</param>
+        /// <param name="xboxStockAmount">Amount of xbox stock</param>
+        /// <param name="bubblewrapStockAmount">Amount of bubblewrap stock</param>
+        /// <param name="cardboardboxStockAmount">Amount of cardboard stock</param>
         protected Stock(int toyStockAmount, int xboxStockAmount, int bubblewrapStockAmount, int cardboardboxStockAmount)
         {
             this.toyStockAmount = toyStockAmount;
@@ -25,8 +31,10 @@ namespace GranbyChallenge
             this.bubblewrapStockAmount = bubblewrapStockAmount;
             this.cardboardboxStockAmount = cardboardboxStockAmount;
         }
-
-        // Get the instance of the stock class
+        /// <summary>
+        /// Get the stock instance
+        /// </summary>
+        /// <returns>New stock or an instance of stock</returns>
         public static Stock GetInstance()
         {
             // Create a random number of stock for each item
@@ -35,9 +43,10 @@ namespace GranbyChallenge
             {
                 random.Next(30, 40),
                 random.Next(40, 60),
-                random.Next(29, 57),
-                random.Next(40, 100)
+                random.Next(75, 100),
+                random.Next(75, 100)
             };
+            // Create a new stock class if the instance does not exist
             if(instance == null)
             {
                 instance = new Stock(stockAmounts[0], stockAmounts[1], stockAmounts[2], stockAmounts[3]);
