@@ -54,7 +54,6 @@ namespace GranbyChallenge
         {
             // Create list to hold completable jobs and the remaining jobs
             List<JobTemplate> completableJobs = new List<JobTemplate>();
-            List<JobTemplate> remainingJobs = new List<JobTemplate>();
 
             // Display the required stock for all of the jobs
             GetRequiredStock(jobs);
@@ -94,7 +93,6 @@ namespace GranbyChallenge
                             toys++;
                             bubblewrap++;
                             boxes++;
-                            remainingJobs.Add(job);
                         }
                     } else if(job is ChristmasJob)
                     {
@@ -111,7 +109,6 @@ namespace GranbyChallenge
                             xbox++;
                             bubblewrap++;
                             boxes++;
-                            remainingJobs.Add(job);
                         }
                     }
                 }
@@ -205,6 +202,34 @@ namespace GranbyChallenge
             Console.WriteLine($"Xbox: {xboxStockNeeded} / {stockAmounts[1]}");
             Console.WriteLine($"Bubblewrap: {bubblewrapStockNeeded} / {stockAmounts[2]}");
             Console.WriteLine($"Cardboard Boxes: {cardboardboxStockNeeded} / {stockAmounts[3]}");
+
+            // Display missing stock
+            int missingToyStock = stockAmounts[0] - toyStockNeeded;
+            int missingXboxStock = stockAmounts[1] - xboxStockNeeded;
+            int missingBubblewrapStock = stockAmounts[2] - bubblewrapStockNeeded;
+            int missingCardboardBoxStock = stockAmounts[3] - cardboardboxStockNeeded;
+
+            if(missingToyStock < 0 || missingXboxStock < 0 || missingBubblewrapStock < 0 || missingCardboardBoxStock < 0)
+            {
+                Console.WriteLine("Missiing Stock");
+            }
+
+            if (missingToyStock < 0)
+            {
+                Console.WriteLine($"Toys: {missingToyStock * -1}");
+            }
+            if (missingXboxStock < 0)
+            {
+                Console.WriteLine($"Xbox: {missingXboxStock * -1}");
+            }
+            if (missingBubblewrapStock < 0)
+            {
+                Console.WriteLine($"Bubblewrap: {missingBubblewrapStock * -1}");
+            }
+            if (missingCardboardBoxStock < 0)
+            {
+                Console.WriteLine($"Cardboard Boxes: {missingCardboardBoxStock * -1}");
+            }
         }
     }
 }
